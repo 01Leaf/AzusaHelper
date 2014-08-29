@@ -76,7 +76,7 @@ namespace AzusaHelper
             if (InputBox("Current Trigger", "", ref resp) == DialogResult.OK)
             {
 
-                Shared.response = resp;
+                Shared.trigger = resp;
             }
         }
 
