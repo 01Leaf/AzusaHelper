@@ -7,3 +7,4 @@ C:\Users\ytc\Documents\GitHub\AzusaHelper\AzusaHelper\obj\x86\Debug\AzusaHelper.
 C:\Users\ytc\Documents\GitHub\AzusaHelper\AzusaHelper\obj\x86\Debug\AzusaHelper.csproj.GenerateResource.Cache
 C:\Users\ytc\Documents\GitHub\AzusaHelper\AzusaHelper\obj\x86\Debug\AzusaHelper.exe
 C:\Users\ytc\Documents\GitHub\AzusaHelper\AzusaHelper\obj\x86\Debug\AzusaHelper.pdb
+C:\Users\ytc\Documents\GitHub\AzusaHelper\AzusaHelper\bin\Debug\AzusaHelper.exe.config
