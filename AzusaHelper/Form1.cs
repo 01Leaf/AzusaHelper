@@ -142,6 +142,12 @@ namespace AzusaHelper
             Clipboard.SetText(Shared.trigger + ", " + Shared.response);
         }
 
+        private void cancelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Shared.trig_testing = false;
+            Shared.testing = false;
+        }
+
       
 
       
