@@ -35,7 +35,7 @@ namespace AzusaHelper
                 }
                 else
                 {
-                    Shared.msg.Enqueue("@" + msg);
+                    Shared.msg.Enqueue(msg);
                 }
                 if (msg.Contains("PRC"))
                 {

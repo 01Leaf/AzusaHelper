@@ -31,6 +31,9 @@
             this.components = new System.ComponentModel.Container();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.listBox1 = new System.Windows.Forms.ListBox();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.setTriggerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.setResponseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.currentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -40,18 +43,18 @@
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.lSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.currentToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripSeparator();
             this.responseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.triggerToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
-            this.currentToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.setTriggerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.setResponseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cancelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripSeparator();
-            this.menuStrip1.SuspendLayout();
+            this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.statLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.contextMenuStrip1.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // timer1
@@ -61,12 +64,35 @@
             // 
             // listBox1
             // 
+            this.listBox1.ContextMenuStrip = this.contextMenuStrip1;
             this.listBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listBox1.FormattingEnabled = true;
             this.listBox1.Location = new System.Drawing.Point(0, 24);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(679, 315);
             this.listBox1.TabIndex = 3;
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.setTriggerToolStripMenuItem,
+            this.setResponseToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(144, 48);
+            // 
+            // setTriggerToolStripMenuItem
+            // 
+            this.setTriggerToolStripMenuItem.Name = "setTriggerToolStripMenuItem";
+            this.setTriggerToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.setTriggerToolStripMenuItem.Text = "Set Trigger";
+            this.setTriggerToolStripMenuItem.Click += new System.EventHandler(this.setTriggerToolStripMenuItem_Click);
+            // 
+            // setResponseToolStripMenuItem
+            // 
+            this.setResponseToolStripMenuItem.Name = "setResponseToolStripMenuItem";
+            this.setResponseToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.setResponseToolStripMenuItem.Text = "Set Response";
+            this.setResponseToolStripMenuItem.Click += new System.EventHandler(this.setResponseToolStripMenuItem_Click);
             // 
             // menuStrip1
             // 
@@ -144,31 +170,43 @@
             this.testToolStripMenuItem.Size = new System.Drawing.Size(41, 20);
             this.testToolStripMenuItem.Text = "&Test";
             // 
+            // currentToolStripMenuItem1
+            // 
+            this.currentToolStripMenuItem1.Name = "currentToolStripMenuItem1";
+            this.currentToolStripMenuItem1.Size = new System.Drawing.Size(124, 22);
+            this.currentToolStripMenuItem1.Text = "&Current";
+            this.currentToolStripMenuItem1.Click += new System.EventHandler(this.currentToolStripMenuItem1_Click);
+            // 
+            // toolStripMenuItem4
+            // 
+            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(121, 6);
+            // 
             // responseToolStripMenuItem
             // 
             this.responseToolStripMenuItem.Name = "responseToolStripMenuItem";
-            this.responseToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.responseToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.responseToolStripMenuItem.Text = "&Response";
             this.responseToolStripMenuItem.Click += new System.EventHandler(this.responseToolStripMenuItem_Click);
             // 
             // triggerToolStripMenuItem1
             // 
             this.triggerToolStripMenuItem1.Name = "triggerToolStripMenuItem1";
-            this.triggerToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.triggerToolStripMenuItem1.Size = new System.Drawing.Size(124, 22);
             this.triggerToolStripMenuItem1.Text = "Trigger";
             this.triggerToolStripMenuItem1.Click += new System.EventHandler(this.triggerToolStripMenuItem1_Click);
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(149, 6);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(121, 6);
             // 
-            // currentToolStripMenuItem1
+            // cancelToolStripMenuItem
             // 
-            this.currentToolStripMenuItem1.Name = "currentToolStripMenuItem1";
-            this.currentToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
-            this.currentToolStripMenuItem1.Text = "&Current";
-            this.currentToolStripMenuItem1.Click += new System.EventHandler(this.currentToolStripMenuItem1_Click);
+            this.cancelToolStripMenuItem.Name = "cancelToolStripMenuItem";
+            this.cancelToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.cancelToolStripMenuItem.Text = "Canc&el";
+            this.cancelToolStripMenuItem.Click += new System.EventHandler(this.cancelToolStripMenuItem_Click);
             // 
             // copyToolStripMenuItem
             // 
@@ -177,53 +215,38 @@
             this.copyToolStripMenuItem.Text = "&Copy";
             this.copyToolStripMenuItem.Click += new System.EventHandler(this.copyToolStripMenuItem_Click);
             // 
-            // contextMenuStrip1
+            // statusStrip1
             // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.setTriggerToolStripMenuItem,
-            this.setResponseToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(144, 48);
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.statLabel});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 317);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(679, 22);
+            this.statusStrip1.TabIndex = 5;
+            this.statusStrip1.Text = "statusStrip1";
             // 
-            // setTriggerToolStripMenuItem
+            // statLabel
             // 
-            this.setTriggerToolStripMenuItem.Name = "setTriggerToolStripMenuItem";
-            this.setTriggerToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
-            this.setTriggerToolStripMenuItem.Text = "Set Trigger";
-            this.setTriggerToolStripMenuItem.Click += new System.EventHandler(this.setTriggerToolStripMenuItem_Click);
-            // 
-            // setResponseToolStripMenuItem
-            // 
-            this.setResponseToolStripMenuItem.Name = "setResponseToolStripMenuItem";
-            this.setResponseToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
-            this.setResponseToolStripMenuItem.Text = "Set Response";
-            this.setResponseToolStripMenuItem.Click += new System.EventHandler(this.setResponseToolStripMenuItem_Click);
-            // 
-            // cancelToolStripMenuItem
-            // 
-            this.cancelToolStripMenuItem.Name = "cancelToolStripMenuItem";
-            this.cancelToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.cancelToolStripMenuItem.Text = "Canc&el";
-            this.cancelToolStripMenuItem.Click += new System.EventHandler(this.cancelToolStripMenuItem_Click);
-            // 
-            // toolStripMenuItem4
-            // 
-            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(149, 6);
+            this.statLabel.Name = "statLabel";
+            this.statLabel.Size = new System.Drawing.Size(39, 17);
+            this.statLabel.Text = "Ready";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(679, 339);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "AZUSA Helper";
+            this.contextMenuStrip1.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.contextMenuStrip1.ResumeLayout(false);
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -252,6 +275,8 @@
         private System.Windows.Forms.ToolStripMenuItem copyToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem4;
         private System.Windows.Forms.ToolStripMenuItem cancelToolStripMenuItem;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel statLabel;
     }
 }
 

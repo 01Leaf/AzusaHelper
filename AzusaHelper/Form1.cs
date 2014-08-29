@@ -26,6 +26,16 @@ namespace AzusaHelper
                 listBox1.Items.Insert(0,tmp);
 
             }
+            if (Shared.testing || Shared.trig_testing)
+            {
+                statLabel.ForeColor = Color.Red;
+                statLabel.Text = "[TESTING] " + Shared.trigger + ", " + Shared.response;
+            }
+            else
+            {
+                statLabel.ForeColor = Color.Black;
+                statLabel.Text = Shared.trigger + ", " + Shared.response;
+            }
         }
 
         private void lSToolStripMenuItem_Click(object sender, EventArgs e)
@@ -35,12 +45,13 @@ namespace AzusaHelper
 
         private void setTriggerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Shared.trigger = listBox1.SelectedItem.ToString();
+            
+            Shared.trigger = listBox1.Text;
         }
 
         private void setResponseToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Shared.response = listBox1.SelectedItem.ToString();
+            Shared.response = listBox1.Text;
         }
 
         private void responseToolStripMenuItem_Click(object sender, EventArgs e)
@@ -62,7 +73,7 @@ namespace AzusaHelper
         private void triggerToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string resp = Shared.trigger;
-            if (InputBox("Current Response", "", ref resp) == DialogResult.OK)
+            if (InputBox("Current Trigger", "", ref resp) == DialogResult.OK)
             {
 
                 Shared.response = resp;
@@ -147,6 +158,9 @@ namespace AzusaHelper
             Shared.trig_testing = false;
             Shared.testing = false;
         }
+
+
+        
 
       
 
