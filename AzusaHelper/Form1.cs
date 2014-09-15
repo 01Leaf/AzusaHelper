@@ -159,6 +159,11 @@ namespace AzusaHelper
             Shared.testing = false;
         }
 
+        private void listBox1_MouseDown(object sender, MouseEventArgs e)
+        {
+            listBox1.SelectedIndex = listBox1.IndexFromPoint(e.X, e.Y);
+        }
+
 
         
 

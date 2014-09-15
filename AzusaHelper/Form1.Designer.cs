@@ -71,6 +71,7 @@
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(679, 315);
             this.listBox1.TabIndex = 3;
+            this.listBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.listBox1_MouseDown);
             // 
             // contextMenuStrip1
             // 
