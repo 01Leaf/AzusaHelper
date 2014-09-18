@@ -40,7 +40,7 @@ namespace AzusaHelper
 
         private void lSToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start(Environment.CurrentDirectory+"\\ls.txt");
+            Console.WriteLine(@"EXEC({AZUSA}\Engines\ls.txt)");
         }
 
         private void setTriggerToolStripMenuItem_Click(object sender, EventArgs e)

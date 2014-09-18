@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using System.Threading;
 using System.Text;
 using ZeroMQ;
+using System.Runtime.InteropServices;
 
 namespace AzusaHelper
 {
@@ -24,8 +25,7 @@ namespace AzusaHelper
         //對消息進行處理
         static void Process(List<string> messages, bool console)
         {
-
-            //請改成自己的代碼
+             
 
             foreach (string msg in messages)
             {
@@ -57,6 +57,8 @@ namespace AzusaHelper
         static ZmqSocket client;
         static List<string> messages = new List<string>();
 
+        
+
 
         /// <summary>
         /// The main entry point for the application.
@@ -64,6 +66,7 @@ namespace AzusaHelper
         [STAThread]
         static void Main()
         {
+
             AZUSAlistener = new Thread(new ThreadStart(ListenToConsole));
             AZUSAlistener.Start();
 
