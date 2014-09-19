@@ -67,11 +67,10 @@ namespace AzusaHelper
         static void Main()
         {
 
-            AZUSAlistener = new Thread(new ThreadStart(ListenToConsole));
-            AZUSAlistener.Start();
-
             ZMQlistener = new Thread(new ThreadStart(ListenToZMQ));
             ZMQlistener.Start();
+
+            
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
@@ -83,11 +82,13 @@ namespace AzusaHelper
         {
             using (ZmqContext ctx = ZmqContext.Create())
             {
-                while (AZUSAAlive)
-                {
+                
                     client = ctx.CreateSocket(SocketType.SUB);
                     client.Subscribe(Encoding.UTF8.GetBytes(""));
 
+
+                    AZUSAlistener = new Thread(new ThreadStart(ListenToConsole));
+                    AZUSAlistener.Start();
 
                     while (AZUSAAlive)
                     {
@@ -102,7 +103,7 @@ namespace AzusaHelper
 
                         messages.Clear();
                     }
-                }
+                
 
             }
         }
@@ -110,13 +111,30 @@ namespace AzusaHelper
         static void ListenToConsole()
         {
 
-            Console.WriteLine("RegisterAs(AI)");
-            Console.WriteLine("GetInputPorts()");
-            InputPorts = Console.ReadLine().Split(',');
-
-
+            Console.WriteLine("RegisterAs(Application)");
             Console.WriteLine("GetAzusaPid()");
-            AZUSAPid = Convert.ToInt32(Console.ReadLine());
+            AZUSAPid = Convert.ToInt32(Console.ReadLine());           
+
+            while (CurrentPorts.Count == 0)
+            {
+                Console.WriteLine("GetInputPorts()");
+                InputPorts = Console.ReadLine().Split(',');
+                
+                foreach (string port in InputPorts)
+                {
+                    if (port.StartsWith("tcp") && !CurrentPorts.Contains(port))
+                    {
+                        Console.WriteLine("Connecting to " + port);
+                        client.Connect(port);
+                        CurrentPorts.Add(port);
+                        Console.WriteLine("Connected to " + port);
+                    }
+                }
+                
+            }
+
+
+           
 
             List<string> msg = new List<string>();
             //Listen for PortHasChanged
@@ -137,7 +155,7 @@ namespace AzusaHelper
 
                         foreach (string port in InputPorts)
                         {
-                            if (port.Trim() != "" && !CurrentPorts.Contains(port))
+                            if (port.StartsWith("tcp") && !CurrentPorts.Contains(port))
                             {
                                 Console.WriteLine("Connecting to " + port);
                                 client.Connect(port);
