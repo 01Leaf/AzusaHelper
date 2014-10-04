@@ -1,0 +1,9 @@
+C:\Users\ytc\Documents\GitHub\AzusaHelper\AzusaHelper\bin\Release\AzusaHelper.exe.config
+C:\Users\ytc\Documents\GitHub\AzusaHelper\AzusaHelper\bin\Release\AzusaHelper.exe
+C:\Users\ytc\Documents\GitHub\AzusaHelper\AzusaHelper\bin\Release\AzusaHelper.pdb
+C:\Users\ytc\Documents\GitHub\AzusaHelper\AzusaHelper\obj\x86\Release\AzusaHelper.csprojResolveAssemblyReference.cache
+C:\Users\ytc\Documents\GitHub\AzusaHelper\AzusaHelper\obj\x86\Release\AzusaHelper.Form1.resources
+C:\Users\ytc\Documents\GitHub\AzusaHelper\AzusaHelper\obj\x86\Release\AzusaHelper.Properties.Resources.resources
+C:\Users\ytc\Documents\GitHub\AzusaHelper\AzusaHelper\obj\x86\Release\AzusaHelper.csproj.GenerateResource.Cache
+C:\Users\ytc\Documents\GitHub\AzusaHelper\AzusaHelper\obj\x86\Release\AzusaHelper.exe
+C:\Users\ytc\Documents\GitHub\AzusaHelper\AzusaHelper\obj\x86\Release\AzusaHelper.pdb

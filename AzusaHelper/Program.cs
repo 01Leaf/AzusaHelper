@@ -4,7 +4,7 @@ using System.Linq;
 using System.Windows.Forms;
 using System.Threading;
 using System.Text;
-using ZeroMQ;
+
 using System.Runtime.InteropServices;
 
 namespace AzusaHelper
@@ -23,20 +23,24 @@ namespace AzusaHelper
         }
 
         //對消息進行處理
-        static void Process(List<string> messages, bool console)
+        static void Process(List<string> messages)
         {
-             
 
-            foreach (string msg in messages)
+            string msg;
+            foreach (string message in messages)
             {
-                if (console)
-                {
-                    Shared.msg.Enqueue("@" + msg);
-                }
-                else
-                {
-                    Shared.msg.Enqueue(msg);
-                }
+                msg = System.Web.HttpUtility.UrlDecode(message);
+                
+                    if (msg.StartsWith("EVENT("))
+                    {
+                        Shared.msg.Enqueue("@" + msg.Replace("EVENT(", "").TrimEnd(')'));
+                    }
+                    else
+                    {
+                        Shared.msg.Enqueue(msg);
+                    }
+                
+                
                 if (msg.Contains("PRC"))
                 {
                     Console.WriteLine("PRCPath?");
@@ -47,17 +51,12 @@ namespace AzusaHelper
         }
 
         static Thread AZUSAlistener;
-        static Thread ZMQlistener;
-        static int AZUSAPid;
+        static int AZUSAPid=-1;
         static bool AZUSAAlive = true;
 
-        static string[] InputPorts = new string[] { };
-        static List<string> CurrentPorts =new List<string>();
-
-        static ZmqSocket client;
         static List<string> messages = new List<string>();
 
-        
+
 
 
         /// <summary>
@@ -67,10 +66,10 @@ namespace AzusaHelper
         static void Main()
         {
 
-            ZMQlistener = new Thread(new ThreadStart(ListenToZMQ));
-            ZMQlistener.Start();
+            AZUSAlistener = new Thread(new ThreadStart(ListenToConsole));
+            AZUSAlistener.Start();
 
-            
+
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
@@ -78,63 +77,27 @@ namespace AzusaHelper
 
         }
 
-        static void ListenToZMQ()
-        {
-            using (ZmqContext ctx = ZmqContext.Create())
-            {
-                
-                    client = ctx.CreateSocket(SocketType.SUB);
-                    client.Subscribe(Encoding.UTF8.GetBytes(""));
 
-
-                    AZUSAlistener = new Thread(new ThreadStart(ListenToConsole));
-                    AZUSAlistener.Start();
-
-                    while (AZUSAAlive)
-                    {
-
-                        messages.Add(client.Receive(Encoding.UTF8));
-
-
-                        if (messages.Count != 0)
-                        {
-                            Process(messages, false);
-                        }
-
-                        messages.Clear();
-                    }
-                
-
-            }
-        }
 
         static void ListenToConsole()
         {
 
             Console.WriteLine("RegisterAs(Application)");
+            Console.WriteLine("LinkRID(INPUT,true)");
+            Console.WriteLine("LinkRID(EVENT,false)");
             Console.WriteLine("GetAzusaPid()");
-            AZUSAPid = Convert.ToInt32(Console.ReadLine());           
 
-            while (CurrentPorts.Count == 0)
+            for (int i = 0; i < 5; i++)                
             {
-                Console.WriteLine("GetInputPorts()");
-                InputPorts = Console.ReadLine().Split(',');
-                
-                foreach (string port in InputPorts)
+                try
                 {
-                    if (port.StartsWith("tcp") && !CurrentPorts.Contains(port))
-                    {
-                        Console.WriteLine("Connecting to " + port);
-                        client.Connect(port);
-                        CurrentPorts.Add(port);
-                        Console.WriteLine("Connected to " + port);
-                    }
+                    AZUSAPid = Convert.ToInt32(Console.ReadLine());
+                    break;
                 }
-                
+                catch { }
             }
 
 
-           
 
             List<string> msg = new List<string>();
             //Listen for PortHasChanged
@@ -145,31 +108,8 @@ namespace AzusaHelper
                 {
                     System.Diagnostics.Process.GetProcessById(AZUSAPid);
                     msg.Add(Console.ReadLine().Trim());
-
-                    if (msg[0] == "PortHasChanged")
-                    {
-                        
-
-                        Console.WriteLine("GetInputPorts()");
-                        InputPorts = Console.ReadLine().Split(',');
-
-                        foreach (string port in InputPorts)
-                        {
-                            if (port.StartsWith("tcp") && !CurrentPorts.Contains(port))
-                            {
-                                Console.WriteLine("Connecting to " + port);
-                                client.Connect(port);
-                                CurrentPorts.Add(port);
-                                Console.WriteLine("Connected to " + port);
-                            }
-                        }
-                        msg.Clear();
-                    }
-                    else
-                    {
-                        Process(msg, true);
-                        msg.Clear();
-                    }
+                    Process(msg);
+                    msg.Clear();
                 }
                 catch
                 {
